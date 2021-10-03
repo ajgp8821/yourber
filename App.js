@@ -2,15 +2,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
+import HomeScreen from './screens/HomeScreen';
 import { store } from './store';
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Lest build Yourber</Text>
+      {/* <View style={styles.container}> */}
+        <HomeScreen />
         {/* <StatusBar style="auto" /> */}
-      </View>
+      {/* </View> */}
     </Provider>
   );
 }
@@ -23,4 +24,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-// https://youtu.be/bvn_HYpix6s?t=2602
