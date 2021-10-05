@@ -7,7 +7,6 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
-        {/* <Text>asd</Text> */}
         <Image
           style={{
             width: 100,
