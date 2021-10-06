@@ -5357,6 +5357,13 @@ react-native-google-places-autocomplete@^2.4.1:
     prop-types "^15.7.2"
     qs "~6.9.1"
 
+react-native-maps@^0.29.3:
+  version "0.29.3"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.29.3.tgz#ab873fa5e7301c29f07886df5f3cbef667d46cca"
+  integrity sha512-742ipC71NdGHXmrCHPY9SEGDuKoSx2l0RMC1W9WXe/jd6+Eg5OllRBcR6Y+ORnzvuYZrd0Hj6q6bK3QR5ZL8sA==
+  dependencies:
+    "@types/geojson" "^7946.0.7"
+
 react-native-ratings@8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-8.0.4.tgz#efd5ebad8acc08bf98d34d39b18fb7a6813ef991"
