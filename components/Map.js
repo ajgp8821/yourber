@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useSelector } from 'react-redux';
 import tw from 'tailwind-react-native-classnames';
-import { selectDestination, selectOrigin, setTravelTimeInformation } from '../slices/navSlice';
+import { selectDestination, selectOrigin, setTravelTimeInformation, setDolarInformation } from '../slices/navSlice';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
@@ -31,6 +31,17 @@ const Map = () => {
       .then(data => {
         // console.log(`data`, data);
         dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
+        
+        // Obtener la tasa de cambio
+        fetch(`https://www.dolarsi.com/api/api.php?type=valoresprincipales`)
+        .then(res => res.json())
+        .then(data => {
+          console.log('d ', data[0].casa.compra);
+          let dolarInfo = data[0].casa.compra;
+          dolarInfo = dolarInfo.replace(/,/g, '.');
+          console.log('dolarInfo', dolarInfo);
+          dispatch(setDolarInformation(dolarInfo));
+        })
       })
     };
 

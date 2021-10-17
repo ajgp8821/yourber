@@ -4,7 +4,7 @@ import tw from 'tailwind-react-native-classnames';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { selectTravelTimeInformation } from '../slices/navSlice';
+import { selectTravelTimeInformation, selectDolarInformation } from '../slices/navSlice';
 
 const data = [
   {
@@ -27,11 +27,15 @@ const data = [
   }
 ];
 
+// If we have SURGE pricing, this goes up
+const SURGE_CHARGE_RATE = 0.8;
+
 const RideOptionsCard = () => {
   
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
   const travelTimeInformation = useSelector(selectTravelTimeInformation);
+  const dolarInformation = useSelector(selectDolarInformation);
   
   return (
     <SafeAreaView style={tw`bg-white flex-grow`}>
@@ -65,12 +69,19 @@ const RideOptionsCard = () => {
               <Text style={tw`text-xl font-semibold`}>{title}</Text>
               <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
             </View>
-            <Text style={tw`text-xl`}>$99</Text>
+            <Text style={tw`text-xl`}>
+              {new Intl.NumberFormat('es-AR',{
+                style : 'currency',
+                currency : 'ARS',
+              }).format(
+                (travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier * dolarInformation) /100
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />
 
-      <View>
+      <View style={tw`mt-auto border-t border-gray-200`}>
         <TouchableOpacity disabled={!selected} style={tw`bg-black py-3 m-3 ${!selected && 'bg-gray-300'}`}>
           <Text style={tw`text-center text-white text-xl`}>Choose {selected?.title}</Text>
         </TouchableOpacity>
