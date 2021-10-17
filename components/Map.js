@@ -36,10 +36,10 @@ const Map = () => {
         fetch(`https://www.dolarsi.com/api/api.php?type=valoresprincipales`)
         .then(res => res.json())
         .then(data => {
-          console.log('d ', data[0].casa.compra);
+          // console.log('d ', data[0].casa.compra);
           let dolarInfo = data[0].casa.compra;
           dolarInfo = dolarInfo.replace(/,/g, '.');
-          console.log('dolarInfo', dolarInfo);
+          // console.log('dolarInfo', dolarInfo);
           dispatch(setDolarInformation(dolarInfo));
         })
       })
